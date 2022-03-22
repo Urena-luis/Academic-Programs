@@ -1,0 +1,24 @@
+#include <iostream>
+#include <stdexcept>
+#include <iterator>
+
+using namespace std;
+
+#ifndef URENA_WEEK5_H
+#define URENA_WEEK5_H
+
+//calculates the integer percent of the double value
+double calculatePercentage(double base, int percent);
+
+//takes in an int argument and returns true if the value of the integer is between 0 and 100. If not, it throws an object to my custom exception type
+bool rangeChecker (int percent);
+
+//a custom exception class that derives from runtime_error. The class specifies an error message warning the user the number must be between zero and one hundred.
+
+class InvalidRange : public std::runtime_error{
+ public:
+  InvalidRange()
+    : std::runtime_error{"The percent value is not between 0 and 100"}{}
+};
+
+#endif
