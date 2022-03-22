@@ -1,0 +1,50 @@
+//This program asks the user to input two values, a double and an integer representing a percentage. The program then returns the integer percent of the double value. 
+
+#include "urena-week5.h"
+
+int main()
+{
+  double base;
+  int percent;
+  
+  ostream_iterator<string> userValues {cout};
+  *userValues = "Please enter a value and then enter a percentage - the percentage values must be within 0 and 100 \n \n";
+
+  cout << "Value: ";
+  cin >> base;
+
+  cout << "Percent: ";
+  cin >> percent;
+  cout << endl;
+
+  try
+    {
+      if (rangeChecker(percent))//ensures the number the user enters for the percent value is valid
+	{
+	  double result{calculatePercentage(base,percent)}; //calculates percentage is the rangeChecker returns true
+	  cout << percent << " percent of " << base << " is " << result << endl;
+	}
+    }
+
+  //catches the exception thrown in rangeChecker and displays the error message in the exception class
+  catch (const InvalidRange& invalidRange)
+    {
+      cout << "Exception occurred: "
+	   << invalidRange.what() << endl;
+    }
+}
+
+double calculatePercentage (double base, int percent)
+{
+  double result = base*(percent*.01);
+  return result;
+}
+
+bool rangeChecker (int percent)
+{
+  if (percent >=0 && percent <=100)
+    return true;
+  else
+    throw InvalidRange{};//terminate function
+}
+
