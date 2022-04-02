@@ -13,8 +13,8 @@ double* getDoubles (int numDoubles)
     {
       arr[i] = temp/3;
       temp += 1;
-      //cout << temp << endl;
-      //cout << arr[i] << endl;
+      cout << temp << endl;
+      cout << arr[i] << endl;
     }
   return arr;
 }
